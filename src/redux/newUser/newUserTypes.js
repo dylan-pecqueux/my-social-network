@@ -1,0 +1,4 @@
+export const NEW_USER_REQUEST = 'NEW_USER_REQUEST';
+export const NEW_USER_SUCCESS = 'NEW_USER_SUCCESS';
+export const NEW_USER_FAILED = 'NEW_USER_FAILED';
+export const USER_LOGOUT = 'USER_LOGOUT';
