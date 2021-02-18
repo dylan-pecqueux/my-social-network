@@ -7,9 +7,10 @@ export const newUserRequest = () => ({
   type: NEW_USER_REQUEST,
 });
 
-export const newUserSuccess = (user) => ({
+export const newUserSuccess = (user, token) => ({
   type: NEW_USER_SUCCESS,
   user,
+  token,
 });
 
 export const newUserFailed = (error) => ({

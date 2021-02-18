@@ -33,7 +33,7 @@ const Register = () => {
         if (response.error) {
           dispatch(newUserFailed(response.error));
         } else {
-          dispatch(newUserSuccess(response.user.id));
+          dispatch(newUserSuccess(response.user.id, response.jwt));
           Cookies.set('token', response.jwt);
           Cookies.set('id', response.user.id);
           history.replace('/');
@@ -43,6 +43,7 @@ const Register = () => {
 
   return (
     <div>
+      {user.isAuthenticated && <Redirect to="/" />}
       <form onSubmit={handleSubmit}>
         <label>
           Username :
@@ -65,7 +66,6 @@ const Register = () => {
         {user.error}
       </h3>
       )}
-      {user.isAuthenticated && <Redirect to="/" />}
     </div>
   );
 };

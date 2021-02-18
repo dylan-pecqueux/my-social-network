@@ -20,7 +20,6 @@ const Login = () => {
       identifier: email,
       password,
     };
-    console.log(data);
     fetch('http://localhost:1337/auth/local', {
       method: 'post',
       headers: {
@@ -32,8 +31,7 @@ const Login = () => {
         if (response.error) {
           dispatch(newUserFailed(response.error));
         } else {
-          dispatch(newUserSuccess(response.user.id));
-          console.log(response);
+          dispatch(newUserSuccess(response.user.id, response.jwt));
           Cookies.set('token', response.jwt);
           Cookies.set('id', response.user.id);
           history.replace('/');
@@ -42,16 +40,17 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login">
+      {user.isAuthenticated && <Redirect to="/" />}
       <form onSubmit={handleSubmit}>
-        <label>
-          Email :
+        <div>
+          <label> Email :</label>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </label>
-        <label>
-          Password :
+        </div>
+        <div>
+          <label>Password : </label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
+        </div>
         <input type="submit" value="Envoyer" />
       </form>
       {user.loading && <h3>loading...</h3>}
@@ -61,7 +60,6 @@ const Login = () => {
         {user.error}
       </h3>
       )}
-      {user.isAuthenticated && <Redirect to="/" />}
     </div>
   );
 };

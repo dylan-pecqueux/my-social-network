@@ -1,37 +1,40 @@
 /* eslint-disable quote-props */
 /* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import Cookies from 'js-cookie';
 import SendedMessage from 'components/SendedMessage';
 import ErrorMessage from 'components/ErrorMessage';
+import DisplayMessages from 'components/DisplayMessages';
+import { useSelector } from 'react-redux';
 
 const SendMessage = () => {
   const [inputValue, setInputValue] = useState('');
   const [send, setSend] = useState(false);
   const [error, setError] = useState(false);
-  const user = useSelector((state) => state.user);
-  const token = Cookies.get('token');
+  const [refetch, setRefetch] = useState(true);
+  const user = useSelector((state) => state);
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSend(false);
+    setError(false);
+    setRefetch(false);
     const data = {
       text: inputValue,
-      user: user.id,
+      user: user.user,
     };
     fetch('http://localhost:1337/posts', {
       method: 'post',
       headers: {
-        'Authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${user.token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     }).then((response) => {
       if (!response.ok) {
         setError(true);
-        setSend(false);
       } else {
         setSend(true);
-        setError(false);
+        setRefetch(true);
+        setInputValue('');
       }
     });
   };
@@ -44,6 +47,7 @@ const SendMessage = () => {
         <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
         <button type="submit">Envoyer</button>
       </form>
+      <DisplayMessages send={refetch} />
     </div>
   );
 };

@@ -9,6 +9,7 @@ const initialState = {
   loading: false,
   isAuthenticated: Cookies.get('token') ? true : false,
   user: Cookies.get('id'),
+  token: Cookies.get('token'),
   error: '',
 };
 
@@ -25,6 +26,7 @@ const newUserReducer = (state = initialState, action) => {
         loading: false,
         isAuthenticated: true,
         user: action.user,
+        token: action.token,
       };
     case NEW_USER_FAILED:
       return {
@@ -38,6 +40,8 @@ const newUserReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         isAuthenticated: false,
+        user: undefined,
+        token: undefined,
       };
     default:
       return state;
