@@ -8,12 +8,12 @@ import { useParams } from 'react-router-dom';
 import UserPost from 'components/UserPost';
 
 const User = () => {
-  const { id } = useParams();
+  const { username } = useParams();
   const connectedUser = useSelector((state) => state);
   const [fetchValue, setFetchValue] = useState('');
 
   const fetchUserProfil = () => {
-    fetch(`http://localhost:1337/users/${id}`, {
+    fetch(`http://localhost:1337/users?slug=${username}`, {
       method: 'get',
       headers: {
         'Authorization': `Bearer ${connectedUser.token}`,
@@ -21,7 +21,8 @@ const User = () => {
       },
     }).then((response) => response.json())
       .then((response) => {
-        setFetchValue(response);
+        console.log(response);
+        setFetchValue(response[0]);
       });
   };
 
@@ -41,7 +42,7 @@ const User = () => {
           <p>{fetchValue.description}</p>
           <div>
             <h2>Posts :</h2>
-            <UserPost id={id} />
+            <UserPost id={fetchValue.id} />
           </div>
         </>
       )}

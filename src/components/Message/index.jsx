@@ -35,7 +35,7 @@ const Message = ({
 
   return (
     <li className="message">
-      <Link to={`/user/${id}`}>{username}</Link>
+      <Link to={`/user/${username}`}>{username}</Link>
       <p>{text}</p>
       <div>
         <Like addLike={addLike} isLiked={isLiked} name={btnName} lengthLike={like.length} />

@@ -13,7 +13,7 @@ const UserPost = ({ id }) => {
   const [isDeleted, setIsDeleted] = useState(false);
 
   const fetchUserPost = () => {
-    fetch(`http://localhost:1337/posts?user.id=${id}`, {
+    fetch(`http://localhost:1337/posts?user.id=${id}&_sort=created_at:desc`, {
       method: 'get',
       headers: {
         'Authorization': `Bearer ${token}`,

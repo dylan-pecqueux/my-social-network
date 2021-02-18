@@ -49,7 +49,7 @@ const App = () => {
             <Login />
           </Route>
           <PrivateRoute path="/profil" component={Profil} />
-          <PrivateRoute path="/user/:id" component={User} />
+          <PrivateRoute path="/user/:username" component={User} />
         </Switch>
       </main>
     </Router>
