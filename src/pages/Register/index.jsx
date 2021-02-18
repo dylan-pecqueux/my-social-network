@@ -42,30 +42,30 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="register">
       {user.isAuthenticated && <Redirect to="/" />}
       <form onSubmit={handleSubmit}>
-        <label>
-          Username :
+        {user.loading && <h3>loading...</h3>}
+        {user.error && (
+        <h3>
+          une erreur est survenue
+          {user.error}
+        </h3>
+        )}
+        <div>
+          <label>Username :</label>
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-        </label>
-        <label>
-          Email :
+        </div>
+        <div>
+          <label>Email :</label>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </label>
-        <label>
-          Password :
+        </div>
+        <div>
+          <label>Password :</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
-        <input type="submit" value="Envoyer" />
+        </div>
+        <input className="btn-primary" type="submit" value="Envoyer" />
       </form>
-      {user.loading && <h3>loading...</h3>}
-      {user.error && (
-      <h3>
-        une erreur est survenue
-        {user.error}
-      </h3>
-      )}
     </div>
   );
 };

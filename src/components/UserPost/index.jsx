@@ -49,7 +49,7 @@ const UserPost = ({ id }) => {
             username={element.user.username}
             id={element.user.id}
             text={element.text}
-            like={element.like}
+            like={element.likes}
             postId={element.id}
             isLiked={isLiked}
             changeLike={changeLike}

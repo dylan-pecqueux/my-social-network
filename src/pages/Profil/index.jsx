@@ -11,8 +11,8 @@ const Profil = () => {
   const [fetchValue, setFetchValue] = useState(false);
   const [username, setUsername] = useState('');
   const [description, setDescription] = useState('');
-  const [error, setError] = useState('');
-  const [send, setSend] = useState('');
+  const [error, setError] = useState(false);
+  const [send, setSend] = useState(false);
   const token = Cookies.get('token');
   const fetchProfile = () => {
     fetch('http://localhost:1337/users/me', {
@@ -30,9 +30,17 @@ const Profil = () => {
   };
   React.useEffect(() => {
     fetchProfile();
+  }, []);
+
+  React.useEffect(() => {
+    if (send) {
+      fetchProfile();
+    }
   }, [send]);
 
   const handleSubmit = (e) => {
+    setSend(false);
+    setError(false);
     e.preventDefault();
     const data = {
       username,
@@ -57,16 +65,25 @@ const Profil = () => {
   };
 
   return (
-    <div>
+    <div className="profil">
       {error && <ErrorMessage />}
       {send && <UpdatedMessage />}
       {!fetchValue && <h3>Loading...</h3>}
       {fetchValue && (
-        <div>
+        <>
           <h1>Mon profil :</h1>
-          <h2>{fetchValue.email}</h2>
-          <h2>{fetchValue.username}</h2>
-          <p>{fetchValue.description}</p>
+          <div>
+            <h3>Username :</h3>
+            <p>{fetchValue.username}</p>
+          </div>
+          <div>
+            <h3>Email :</h3>
+            <p>{fetchValue.email}</p>
+          </div>
+          <div>
+            <h3>Description :</h3>
+            <p>{fetchValue.description}</p>
+          </div>
           <UpdateProfile
             handleSubmit={handleSubmit}
             username={username}
@@ -74,7 +91,7 @@ const Profil = () => {
             handleUsername={(e) => setUsername(e.target.value)}
             handleDescription={(e) => setDescription(e.target.value)}
           />
-        </div>
+        </>
       )}
     </div>
   );

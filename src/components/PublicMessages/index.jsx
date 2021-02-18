@@ -24,7 +24,8 @@ const PublicMessages = () => {
   }, []);
 
   return (
-    <div>
+    <div className="public-msg">
+      <h2>Découvrez les auteurs de ces posts en vous connectant :</h2>
       {!fetchValue && <h3>Loading...</h3>}
       {fetchValue && (
         <ul>

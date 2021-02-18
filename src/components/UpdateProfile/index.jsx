@@ -6,15 +6,16 @@ const UpdateProfile = ({
   handleSubmit, username, handleDescription, description, handleUsername,
 }) => (
   <form onSubmit={handleSubmit}>
-    <label>
-      Username :
+    <h2>Modifier le profil :</h2>
+    <div>
+      <label>Username :</label>
       <input type="text" name="setUsername" value={username} onChange={handleUsername} />
-    </label>
-    <label>
-      Description :
+    </div>
+    <div>
+      <label>Description :</label>
       <input type="textArea" name="setDescription" value={description} onChange={handleDescription} />
-    </label>
-    <button type="submit">Envoyer</button>
+    </div>
+    <button className="btn-primary" type="submit">Envoyer</button>
   </form>
 );
 

@@ -1,0 +1,28 @@
+.send-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  form {
+    input {
+      height: 40px;
+      width: 400px;
+      border-radius: 5px;
+      border: 1px solid rgb(142, 194, 253);
+      padding-left: 10px;
+      margin-right: 10px;
+      &::placeholder {
+        color: rgb(138, 138, 138);
+      }
+      &:focus {
+        outline: none;
+        box-shadow: 1px 1px 13px 4px rgba(77, 158, 252, 0.75);
+        -webkit-box-shadow: 1px 1px 13px 4px rgba(77, 158, 252, 0.75);
+        -moz-box-shadow: 1px 1px 13px 4px rgba(77, 158, 252, 0.75);
+      }
+    }
+    .btn {
+      width: 80px;
+      height: 40px;
+    }
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 /* eslint-disable quote-props */
 /* eslint-disable import/no-unresolved */
@@ -45,21 +46,24 @@ const DisplayMessages = ({ send }) => {
     <div>
       {!fetchValue && <h3>Loading...</h3>}
       {fetchValue && token && (
-        <ul>
-          {fetchValue.map((element) => (
-            <Message
-              key={uuid()}
-              username={element.user.username}
-              id={element.user.id}
-              text={element.text}
-              like={element.likes}
-              postId={element.id}
-              isLiked={isLiked}
-              changeLike={changeLike}
-              changeIsDeleted={changeIsDeleted}
-            />
-          ))}
-        </ul>
+        <>
+          <h2>Fil d'actualité</h2>
+          <ul>
+            {fetchValue.map((element) => (
+              <Message
+                key={uuid()}
+                username={element.user.username}
+                id={element.user.id}
+                text={element.text}
+                like={element.likes}
+                postId={element.id}
+                isLiked={isLiked}
+                changeLike={changeLike}
+                changeIsDeleted={changeIsDeleted}
+              />
+            ))}
+          </ul>
+        </>
       )}
     </div>
   );

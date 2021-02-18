@@ -9,19 +9,19 @@ const Home = () => {
   const user = useSelector((state) => state);
 
   return (
-    <div>
-      <h1>Welcome on My Social Network. This website is a training to Redux and React. We use auth and routing to create a small social media website.</h1>
+    <>
       {user.isAuthenticated && (
-        <div>
+        <div className="send-message">
           <SendMessage />
         </div>
       )}
       {!user.isAuthenticated && (
-        <div>
+        <div className="home">
+          <h1>Bienvenue sur My Social Network. Ce site est une entraînement à Redux et React. Nous utilisons auth et le routing pour créer un petit réseaux social.</h1>
           <PublicMessages />
         </div>
       )}
-    </div>
+    </>
   );
 };
 

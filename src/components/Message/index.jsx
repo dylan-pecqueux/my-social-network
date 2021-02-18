@@ -12,12 +12,9 @@ const Message = ({
   username, text, like, id, postId, isLiked, changeLike, changeIsDeleted,
 }) => {
   const user = useSelector((state) => state);
-  console.log(user.user);
   const alreadyLiked = like.filter((element) => element.id == user.user);
   const dislike = like.filter((element) => element.id != user.user);
   const btnName = alreadyLiked[0] ? 'unlike' : 'like';
-  console.log(dislike);
-  console.log(alreadyLiked);
 
   const addLike = () => {
     const data = {
@@ -38,12 +35,13 @@ const Message = ({
   };
 
   return (
-    <li>
+    <li className="message">
       <Link to={`/user/${id}`}>{username}</Link>
       <p>{text}</p>
-      <p>{like.length}</p>
-      <Like addLike={addLike} isLiked={isLiked} name={btnName} />
-      {user.user == id && <Delete postId={postId} changeIsDeleted={changeIsDeleted} />}
+      <div>
+        <Like addLike={addLike} isLiked={isLiked} name={btnName} lengthLike={like.length} />
+        {user.user == id && <Delete postId={postId} changeIsDeleted={changeIsDeleted} />}
+      </div>
     </li>
   );
 };

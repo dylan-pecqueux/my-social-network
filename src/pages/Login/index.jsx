@@ -41,8 +41,15 @@ const Login = () => {
 
   return (
     <div className="login">
-      {user.isAuthenticated && <Redirect to="/" />}
       <form onSubmit={handleSubmit}>
+        {user.isAuthenticated && <Redirect to="/" />}
+        {user.loading && <h3>loading...</h3>}
+        {user.error && (
+        <h3>
+          une erreur est survenue
+          {user.error}
+        </h3>
+        )}
         <div>
           <label> Email :</label>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -51,15 +58,8 @@ const Login = () => {
           <label>Password : </label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <input type="submit" value="Envoyer" />
+        <input className="btn-primary" type="submit" value="Envoyer" />
       </form>
-      {user.loading && <h3>loading...</h3>}
-      {user.error && (
-      <h3>
-        une erreur est survenue
-        {user.error}
-      </h3>
-      )}
     </div>
   );
 };

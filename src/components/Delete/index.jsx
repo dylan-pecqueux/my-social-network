@@ -20,7 +20,7 @@ const Delete = ({ postId, changeIsDeleted }) => {
   };
 
   return (
-    <button type="button" onClick={fetchDelete}>Delete</button>
+    <button className="delete-btn" type="button" onClick={fetchDelete}>Supprimer</button>
   );
 };
 

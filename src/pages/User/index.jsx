@@ -30,13 +30,13 @@ const User = () => {
   }, []);
   
   return (
-    <div>
+    <div className="user">
       {!fetchValue && <h3>Loading...</h3>}
       {fetchValue && (
         <>
-          <h2>
-            Profil de : {fetchValue.username}
-          </h2>
+          <h1>
+            Profil de : <span>{fetchValue.username}</span>
+          </h1>
           <h3>Description :</h3>
           <p>{fetchValue.description}</p>
           <div>

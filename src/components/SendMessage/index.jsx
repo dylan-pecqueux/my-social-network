@@ -40,15 +40,15 @@ const SendMessage = () => {
   };
 
   return (
-    <div>
+    <>
       {error && <ErrorMessage />}
       {send && <SendedMessage />}
       <form onSubmit={handleSubmit}>
-        <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
-        <button type="submit">Envoyer</button>
+        <input placeholder="Quelque-chose à dire ?" type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+        <button className="btn btn-primary" type="submit">Envoyer</button>
       </form>
       <DisplayMessages send={refetch} />
-    </div>
+    </>
   );
 };
 
